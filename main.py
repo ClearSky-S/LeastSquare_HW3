@@ -1,3 +1,6 @@
+# Linear Algebra HW3
+# 2021038131 장준혁(Jang JunHyuck)
+
 import numpy as np
 
 
@@ -7,14 +10,18 @@ def inputMatrix():
     m = int(input('Dimension of column vector (m): '))
     n = int(input('Number of vectors (n): '))
     a = np.empty([m, n], dtype=float)  # make mxn empty matrix
-    for i in range(0, m):
+    for j in range(0, n):
         while True:
-            v = list(map(int, input('Row ' + str(i + 1) + ': ').split()))
-            if len(v) is n:
-                a[i] = v
+            v = list(map(int, input('Column vector ' + str(j + 1) + ': ').split()))
+            if len(v) is m:
+                for i in range(m):
+                    a[i][j] = v[i]
                 break
             else:
-                print("Error: Column number should be " + str(m))
+                print("Error: dimension of vector should be " + str(m))
+    print()
+    print('Original Matrix')
+    print(a)
     return a
 
 
@@ -66,8 +73,13 @@ def check_orthonomality(q):
 if __name__ == '__main__':
     a = []
     a = inputMatrix()
-    print(a)
+
     q = gs_orthogonalization(a)
     print(q)
+
     check_orthonomality(q)
+
     find_linear_combination(q)
+    find_linear_combination(q)
+    find_linear_combination(q)
+
